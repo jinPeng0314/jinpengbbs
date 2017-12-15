@@ -16,7 +16,7 @@
                     <hr>
                     <div class="media">
                         <div align="center">
-                            <a href="{{ route('users.show', $topic->user->id) }}">
+                            <a href="{{ $topic->link() }}">
                                 <img class="thumbnail img-responsive" src="{{ isset($topic->user->avatar )? $topic->user->avatar :'/images/default.png'}}" width="300px" height="300px">
                             </a>
                         </div>
