@@ -8,8 +8,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'LaraBBS') - 金鹏论坛</title>
-    <meta name="description" content="@yield('description', '金鹏论坛 爱好者社区')" />
+    <title>@yield('title', '金鹏论坛') - {{ setting('site_name', '金鹏论坛') }}</title>
+    <meta name="description" content="@yield('description', setting('seo_description', '金鹏论坛'))" />
+    <meta name="keyword" content="@yield('keyword', setting('seo_keyword', '金鹏,社区,论坛,开发者论坛'))" />
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('styles')
