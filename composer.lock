@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "15b10dda27a81866e45e1b444829afa6",
+    "content-hash": "b224a5912d7cb3547fc1f7132d61028f",
     "packages": [
         {
             "name": "caouecs/laravel-lang",
@@ -47,6 +47,47 @@
                 "lpm"
             ],
             "time": "2017-11-06T19:03:05+00:00"
+        },
+        {
+            "name": "ckeditor/ckeditor",
+            "version": "4.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ckeditor/ckeditor-releases.git",
+                "reference": "3e0ba2fa7361e0e425b73b2e4400af4a7f767ec5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/ckeditor/ckeditor-releases/3e0ba2fa7361e0e425b73b2e4400af4a7f767ec5.zip",
+                "reference": "3e0ba2fa7361e0e425b73b2e4400af4a7f767ec5",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+",
+                "LGPL-2.1+",
+                "MPL-1.1+"
+            ],
+            "authors": [
+                {
+                    "name": "CKSource",
+                    "homepage": "http://cksource.com"
+                }
+            ],
+            "description": "JavaScript WYSIWYG web text editor.",
+            "homepage": "http://ckeditor.com",
+            "keywords": [
+                "CKEditor",
+                "editor",
+                "fckeditor",
+                "html",
+                "javascript",
+                "richtext",
+                "text",
+                "wysiwyg"
+            ],
+            "time": "2017-12-13T16:47:19+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2063,6 +2104,67 @@
                 "spatie"
             ],
             "time": "2017-11-27T10:22:46+00:00"
+        },
+        {
+            "name": "summerblue/administrator",
+            "version": "v1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/summerblue/administrator.git",
+                "reference": "a13939304c1dbba15ab56947f3ef9937657f586c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/summerblue/administrator/a13939304c1dbba15ab56947f3ef9937657f586c.zip",
+                "reference": "a13939304c1dbba15ab56947f3ef9937657f586c",
+                "shasum": ""
+            },
+            "require": {
+                "ckeditor/ckeditor": "4.*",
+                "laravel/framework": "5.5.*",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~5.7.12"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Frozennode\\Administrator\\AdministratorServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/controllers"
+                ],
+                "psr-0": {
+                    "Frozennode\\Administrator": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Original: Jan Hartigan, modified by CJ",
+                    "email": "cj@estgroupe.com"
+                }
+            ],
+            "description": "A database interface package for Laravel, modified!",
+            "homepage": "https://github.com/summerblue/administrator",
+            "keywords": [
+                "admin",
+                "administrator",
+                "cms",
+                "database",
+                "laravel",
+                "laravel-administrator"
+            ],
+            "time": "2017-10-27T11:08:56+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
