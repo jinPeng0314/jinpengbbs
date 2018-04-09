@@ -38,6 +38,8 @@ class VerificationCodesController extends Controller
 
         return $this->response->array([
             'key' => $key,
+
+            //日期类型转为字符串
             'expired_at' => $expiredAt->toDateTimeString(),
         ])->setStatusCode(201);
     }
