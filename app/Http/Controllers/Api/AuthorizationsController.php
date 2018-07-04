@@ -8,6 +8,7 @@ use App\Http\Requests\Api\SocialAuthorizationRequest;
 use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Requests\Api\AuthorizationRequest;
+use App\Http\Requests\Api\WeappAuthorizationRequest;
 
 class AuthorizationsController extends Controller
 {
@@ -65,6 +66,58 @@ class AuthorizationsController extends Controller
             return $this->response->errorUnauthorized(trans('auth.failed'));
         }
 
+        return $this->respondWithToken($token)->setStatusCode(201);
+    }
+
+    /**
+     * 小程序登录
+     * @param WeappAuthorizationRequest $request
+     */
+    public function weappStore(WeappAuthorizationRequest $request)
+    {
+        $code = $request->code;
+
+        //根据code获取微信openid和session_key
+        $miniProgram = \EasyWeChat::miniProgram();
+        $data = $miniProgram->auth->session($code);
+
+        //如果结果错误 说明code已过期或者不存在 返回401错误
+        if (isset($data['errcode'])){
+            return $this->response->errorUnauthorized('code 错误');
+        }
+
+        //找到openid对应的用户
+        $user = User::where('weapp_openid',$data['openid'])->first();
+        $attributes['session_key'] = $data['session_key'];
+
+        //未找到对应用户则需要提交用户名密码进行用户绑定
+        if (!$user){
+            // 如果未提交用户名密码，403 错误提示
+            if (!$request->username){
+                return $this->response->errorForbidden('用户不存在');
+            }
+            $userName = $request->username;
+
+            //用户名可以使邮箱或者电话号码
+            filter_var($userName,FILTER_VALIDATE_EMAIL) ?
+                $credentials['email'] = $userName :
+                $credentials['phone'] = $userName;
+            $credentials['password'] = $request->password;
+
+            //验证用户名和密码是否正确
+            if (!\Auth::guard('api')->once($credentials)){
+                return $this->response->errorUnauthorized('用户名或密码错误');
+            }
+
+            //获取对应的用户
+            $user = \Auth::guard('api')->getUser();
+            $attributes['weapp_openid'] = $data['openid'];
+        }
+        //更新用户数据
+        $user->update($attributes);
+
+        //为对应用户创建 JWT
+        $token = \Auth::guard('api')->fromUser($user);
         return $this->respondWithToken($token)->setStatusCode(201);
     }
 
