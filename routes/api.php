@@ -36,6 +36,10 @@ use Illuminate\Http\Request;
          $api->post('weapp/authorizations', 'AuthorizationsController@weappStore')
              ->name('api.weapp.authorizations.store');
 
+         // 小程序注册
+         $api->post('weapp/users', 'UsersController@weappStore')
+             ->name('api.weapp.users.store');
+
          // 刷新token
          $api->put('authorizations/current', 'AuthorizationsController@update')
              ->name('api.authorizations.update');
