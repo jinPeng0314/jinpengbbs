@@ -39,13 +39,6 @@ class UsersController extends Controller
         ])->setStatusCode(201);
     }
 
-    /**
-     * 小程序注册
-     *
-     *
-     * @param UserRequest $request
-     * @return $this|void
-     */
     public function weappStore(UserRequest $request)
     {
         // 缓存中是否存在对应的key
@@ -55,8 +48,8 @@ class UsersController extends Controller
             return $this->response->error('验证码已失效', 422);
         }
 
-        // 判断验证码是否相等, 不相等返回401错误
-        if (!hash_equals((string)$verifyData['code'],$request->verification_key)){
+        // 判断验证码是否相等，不相等反回 401 错误
+        if (!hash_equals((string)$verifyData['code'], $request->verification_code)) {
             return $this->response->errorUnauthorized('验证码错误');
         }
 
