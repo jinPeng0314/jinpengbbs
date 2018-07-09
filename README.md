@@ -1,1 +1,1 @@
-本项目基于laravel-china创始人Summer发布的Laravel教程-web开发实战进阶（laravel5.5）
+基于laravel5.5
